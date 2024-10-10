@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Only Two Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Stack items vertically */
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            margin-bottom: 20px; /* Add margin for space below container */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #777;
+        }
+
+        .toggle-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .toggle input {
+            display: none;
+        }
+
+        .slider {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .slider:before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+            left: 0;
+        }
+
+        input:checked + .slider {
+            background-color: #4caf50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        /* Remove blue outline when toggling */
+        input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .slider {
+            outline: none;
+        }
+
+        /* Remove any selection or highlight effects on the slider */
+        .slider:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .slider::after {
+            content: 'No';
+            position: absolute;
+            left: 35px;
+            top: 7px;
+            color: white;
+            font-size: 12px;
+        }
+
+        input:checked + .slider::after {
+            content: 'Yes';
+            left: 5px;
+        }
+
+        /* Prevent the text from being clickable */
+        label {
+            pointer-events: none;
+        }
+
+        /* Only the slider is clickable */
+        .slider {
+            pointer-events: all;
+        }
+
+        /* Prevent text selection while clicking the labels */
+        label {
+            user-select: none;
+        }
+
+        /* Style for the disclaimer text */
+        .disclaimer {
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px; /* Space above the disclaimer */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Only Two Options</h1>
+        <h2>Choose Wisely!😛</h2>
+
+        <div class="toggle-container">
+            <label class="toggle">
+                Dahej
+                <input type="checkbox" id="dahej" onchange="handleToggle()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-container">
+            <label class="toggle">
+                Seal
+                <input type="checkbox" id="seal" onchange="handleToggle()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-container">
+            <label class="toggle">
+                Face
+                <input type="checkbox" id="face" onchange="handleToggle()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <script>
+        function handleToggle() {
+            const dahej = document.getElementById('dahej');
+            const seal = document.getElementById('seal');
+            const face = document.getElementById('face');
+
+            // Check if all three are checked
+            if (dahej.checked && seal.checked && face.checked) {
+                // Create an array of checked options
+                const checkedOptions = [dahej, seal, face];
+
+                // Pick a random index from the checkedOptions array
+                const randomIndex = Math.floor(Math.random() * checkedOptions.length);
+
+                // Uncheck the randomly selected option
+                checkedOptions[randomIndex].checked = false;
+            }
+        }
+    </script>
+
+    <p class="disclaimer">This is only for fun and does not represent or show disrespect to anybody.</p>
+</body>
+</html>
